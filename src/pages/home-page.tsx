@@ -110,7 +110,7 @@ classDiagram
     Contact "*" --> "*" Campaign : matched by tags
 `;
 
-const HomePage = () => {
+export default function HomePage() {
   useEffect(() => {
     mermaid.initialize({
       theme: 'dark',
@@ -172,5 +172,3 @@ const HomePage = () => {
     </div>
   );
 };
-
-export default HomePage;

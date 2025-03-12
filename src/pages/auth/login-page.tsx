@@ -1,7 +1,10 @@
 import LoginForm from '@/components/auth/login-form';
+import AuthCard from '@/components/auth/auth-card';
 
-const LoginPage = () => {
-  return <LoginForm />;
-};
-
-export default LoginPage;
+export default function LoginPage() {
+  return (
+    <AuthCard title="Sign in to your account">
+      <LoginForm />
+    </AuthCard>
+  );
+}
