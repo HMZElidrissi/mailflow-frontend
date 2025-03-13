@@ -10,7 +10,7 @@ export default function DashboardLayout() {
   // const { token } = useSelector((state: RootState) => state.auth);
 
   // if (!token) {
-  //   return <Navigate to="/login" />;
+  //   return <Navigate to="/sign-in" />;
   // }
 
   return (

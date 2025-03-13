@@ -17,15 +17,15 @@ function App() {
     <ThemeProvider defaultTheme="dark" attribute="class">
       <Router>
         <Routes>
-          <Route path="/login" element={!token ? <LoginPage /> : <Navigate to="/dashboard" />} />
+          <Route path="/sign-in" element={!token ? <LoginPage /> : <Navigate to="/dashboard" />} />
 
           {/* Main Layout Routes */}
           <Route element={<MainLayout />}>
             <Route path="/" element={<HomePage />} />
-            <Route path="/posts" element={token ? <PostsPage /> : <Navigate to="/login" />} />
+            <Route path="/posts" element={token ? <PostsPage /> : <Navigate to="/sign-in" />} />
             <Route
               path="/posts/create"
-              element={token ? <CreatePostPage /> : <Navigate to="/login" />}
+              element={token ? <CreatePostPage /> : <Navigate to="/sign-in" />}
             />
           </Route>
 
@@ -35,6 +35,8 @@ function App() {
             <Route path="posts" element={<PostsPage />} />
             <Route path="posts/create" element={<CreatePostPage />} />
           </Route>
+
+          {/*<Route path="*" element={<NotFoundPage />} />*/}
         </Routes>
       </Router>
     </ThemeProvider>

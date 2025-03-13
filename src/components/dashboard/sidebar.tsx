@@ -41,7 +41,7 @@ export function DashboardSidebar() {
     try {
       setIsLoading(true);
       await dispatch(logout() as never);
-      navigate('/login');
+      navigate('/sign-in');
     } catch (error) {
       console.error('Error signing out:', error);
       setIsLoading(false);
