@@ -8,11 +8,10 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Loader2, Plus, Search } from 'lucide-react';
 import { DashboardShell } from '@/components/dashboard/shell';
 import {
-  AddContactDialog,
   AddTagDialog,
+  ContactDialog,
   ContactsTable,
   DeleteContactDialog,
-  EditContactDialog,
 } from '@/components/contacts';
 
 export default function ContactsPage() {
@@ -98,14 +97,16 @@ export default function ContactsPage() {
       )}
 
       {/* Dialog Components */}
-      <AddContactDialog
+      <ContactDialog
         open={showAddDialog}
+        mode="add"
         onOpenChange={setShowAddDialog}
         onSuccess={() => setShowAddDialog(false)}
       />
 
-      <EditContactDialog
+      <ContactDialog
         open={editingContact !== null}
+        mode="edit"
         onOpenChange={(open) => !open && setEditingContact(null)}
         contact={editingContact}
         onSuccess={() => setEditingContact(null)}
