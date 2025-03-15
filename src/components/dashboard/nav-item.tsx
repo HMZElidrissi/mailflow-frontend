@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils';
 export interface NavigationItem {
   title: string;
   href: string;
+  pattern?: string;
   icon: React.ElementType;
 }
 
@@ -13,8 +14,10 @@ interface NavItemProps {
 }
 
 const NavItem = ({ item }: NavItemProps) => {
-  const location = useLocation();
-  const isActive = location.pathname === item.href;
+  const { pathname } = useLocation();
+  const isActive = item.pattern
+    ? new RegExp(item.pattern).test(pathname)
+    : pathname === item.href;
 
   return (
     <Link className="flex items-center gap-3" to={item.href}>

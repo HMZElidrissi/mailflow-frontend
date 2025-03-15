@@ -1,37 +1,24 @@
 import * as React from 'react';
-import {
-  BarChart3,
-  FileText,
-  Home,
-  Settings,
-  Users,
-} from 'lucide-react';
+import { Home, Settings, Users } from 'lucide-react';
 
 export interface NavigationItem {
   title: string;
   href: string;
+  pattern?: string;
   icon: React.ElementType;
 }
 
 export const mainNavigation: NavigationItem[] = [
   {
-    title: 'Dashboard',
+    title: 'Home',
     href: '/dashboard',
+    pattern: '^/dashboard$',
     icon: Home,
   },
   {
-    title: 'Analytics',
-    href: '/dashboard/analytics',
-    icon: BarChart3,
-  },
-  {
-    title: 'Posts',
-    href: '/dashboard/posts',
-    icon: FileText,
-  },
-  {
-    title: 'Users',
-    href: '/dashboard/users',
+    title: 'Contacts',
+    href: '/dashboard/contacts',
+    pattern: '^/dashboard/contacts',
     icon: Users,
   },
 ];

@@ -1,8 +1,8 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import api from '../../services/api';
 
 interface AuthState {
-  user: any | null;
+  user: never | null; // TODO: Replace with actual user type
   token: string | null;
   loading: boolean;
   error: string | null;

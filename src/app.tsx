@@ -9,6 +9,7 @@ import LoginPage from '@/pages/auth/login-page';
 import PostsPage from '@/pages/posts/posts-page';
 import CreatePostPage from '@/pages/posts/create-post-page';
 import DashboardPage from '@/pages/dashboard/dashboard-page.tsx';
+import ContactsPage from '@/pages/contacts/contacts-page.tsx';
 
 function App() {
   const { token } = useSelector((state: RootState) => state.auth);
@@ -32,6 +33,7 @@ function App() {
           {/* Dashboard Layout Routes */}
           <Route path="/dashboard" element={<DashboardLayout />}>
             <Route index element={<DashboardPage />} />
+            <Route path="contacts" element={<ContactsPage />} />
             <Route path="posts" element={<PostsPage />} />
             <Route path="posts/create" element={<CreatePostPage />} />
           </Route>
