@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Home, Settings, Users } from 'lucide-react';
+import { Activity, Home, Mail, Settings, Users } from 'lucide-react';
 
 export interface NavigationItem {
   title: string;
@@ -20,6 +20,18 @@ export const mainNavigation: NavigationItem[] = [
     href: '/dashboard/contacts',
     pattern: '^/dashboard/contacts',
     icon: Users,
+  },
+  {
+    title: 'Campaigns',
+    href: '/dashboard/campaigns',
+    pattern: '^/dashboard/campaigns',
+    icon: Activity,
+  },
+  {
+    title: 'Email Templates',
+    href: '/dashboard/templates',
+    pattern: '^/dashboard/templates',
+    icon: Mail,
   },
 ];
 
