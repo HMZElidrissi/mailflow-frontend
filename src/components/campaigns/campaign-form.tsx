@@ -4,6 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { z } from 'zod';
 import { campaignsApi } from '@/services/campaignsApi';
+import { templatesApi } from '@/services/templatesApi';
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -35,14 +36,6 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
-// Mock template data - replace with actual API call
-const mockTemplates = [
-  { id: 1, name: 'Welcome Email' },
-  { id: 2, name: 'Monthly Newsletter' },
-  { id: 3, name: 'Product Announcement' },
-  { id: 4, name: 'Follow-up Email' },
-];
-
 interface CampaignFormProps {
   campaign?: Campaign;
   onSuccess: () => void;
@@ -52,15 +45,21 @@ export function CampaignForm({ campaign, onSuccess }: CampaignFormProps) {
   const queryClient = useQueryClient();
   const isEditing = !!campaign;
 
-  const { data: templates, isLoading: templatesLoading } = useQuery({
+  const {
+    data: templatesResponse,
+    isLoading: templatesLoading,
+    error: templatesError,
+  } = useQuery({
     queryKey: ['templates'],
     queryFn: async () => {
-      // TODO: Replace with actual API call
-      // const response = await templatesApi.getAll();
-      // return response.data;
-      return mockTemplates;
+      const response = await templatesApi.getAll();
+      return response.data;
     },
   });
+
+  const templates = (templatesResponse?.content || []).filter(
+    (template) => template && template.id && typeof template.id !== 'undefined'
+  );
 
   // Initialize react-hook-form
   const form = useForm<FormValues>({
@@ -159,15 +158,26 @@ export function CampaignForm({ campaign, onSuccess }: CampaignFormProps) {
                     <div className="flex items-center justify-center p-4">
                       <Loader2 className="h-4 w-4 animate-spin" />
                     </div>
+                  ) : templatesError ? (
+                    <div className="p-2 text-sm text-destructive">Failed to load templates</div>
+                  ) : templates.length === 0 ? (
+                    <div className="p-2 text-sm text-muted-foreground">No templates available</div>
                   ) : (
-                    templates?.map((template) => (
-                      <SelectItem key={template.id} value={template.id.toString()}>
-                        {template.name}
-                      </SelectItem>
-                    ))
+                    templates.map((template) =>
+                      template && template.id ? (
+                        <SelectItem key={template.id} value={template.id.toString()}>
+                          {template.name}
+                        </SelectItem>
+                      ) : null
+                    )
                   )}
                 </SelectContent>
               </Select>
+              {templatesError && (
+                <p className="text-sm text-destructive">
+                  Unable to load templates. Please try again later.
+                </p>
+              )}
               <FormMessage />
             </FormItem>
           )}
