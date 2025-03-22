@@ -22,3 +22,7 @@ export const getStatusBadge = (status: EmailStatus) => {
       return 'outline';
   }
 };
+
+export const formatPercentage = (value: number) => {
+  return `${value >= 0 ? '+' : ''}${value.toFixed(1)}%`;
+};

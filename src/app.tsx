@@ -4,12 +4,14 @@ import { RootState } from '@/store/store';
 import { ThemeProvider } from '@/components/theme/theme-provider';
 import MainLayout from '@/layouts/main-layout';
 import DashboardLayout from '@/layouts/dashboard-layout';
-import HomePage from '@/pages/home/home-page.tsx';
+import HomePage from '@/pages/home/home-page';
 import LoginPage from '@/pages/auth/login-page';
-import DashboardPage from '@/pages/dashboard/dashboard-page.tsx';
-import ContactsPage from '@/pages/contacts/contacts-page.tsx';
-import CampaignsPage from '@/pages/campaigns/campaigns-page.tsx';
-import TemplatesPage from '@/pages/templates/templates-page.tsx';
+import DashboardPage from '@/pages/dashboard/dashboard-page';
+import ContactsPage from '@/pages/contacts/contacts-page';
+import CampaignsPage from '@/pages/campaigns/campaigns-page';
+import TemplatesPage from '@/pages/templates/templates-page';
+import EmailsPage from '@/pages/emails/emails-page';
+import NotFoundPage from '@/pages/home/not-found-page';
 
 function App() {
   const { token } = useSelector((state: RootState) => state.auth);
@@ -31,10 +33,11 @@ function App() {
             <Route path="contacts" element={<ContactsPage />} />
             <Route path="campaigns" element={<CampaignsPage />} />
             <Route path="templates" element={<TemplatesPage />} />
+            <Route path="emails" element={<EmailsPage />} />
             <Route path="*" element={<Navigate to="/dashboard" />} />
           </Route>
 
-          {/*<Route path="*" element={<NotFoundPage />} />*/}
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Router>
     </ThemeProvider>

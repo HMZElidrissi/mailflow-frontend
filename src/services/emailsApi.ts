@@ -1,21 +1,9 @@
 import api from '@/services/api';
-import { Email, EmailStats } from '@/types';
+import { Email } from '@/types';
 
 export const emailsApi = {
   getById: async (id: number) => {
     return api.get<Email>(`/emails/${id}`);
-  },
-
-  getByCampaign: async (campaignId: number) => {
-    return api.get<Email[]>(`/emails/campaign/${campaignId}`);
-  },
-
-  getByContact: async (contactId: number) => {
-    return api.get<Email[]>(`/emails/contact/${contactId}`);
-  },
-
-  getCampaignStats: async (campaignId: number) => {
-    return api.get<EmailStats>(`/emails/campaign/${campaignId}/stats`);
   },
 
   getRecent: async (limit = 10) => {
@@ -30,5 +18,27 @@ export const emailsApi = {
 
   retryFailed: async (minutes = 60) => {
     return api.post<Email[]>(`/emails/retry?minutes=${minutes}`);
+  },
+
+  getEmailStats: async () => {
+    return api.get<{
+      totalSent: number;
+      totalOpened: number;
+      totalClicked: number;
+      openRate: number;
+      sentChangePercentage: number;
+      openedChangePercentage: number;
+      clickedChangePercentage: number;
+      openRateChangePercentage: number;
+    }>('/emails/stats');
+  },
+
+  getAnalytics: async (period = 'year') => {
+    return api.get<{
+      labels: string[];
+      sent: number[];
+      opened: number[];
+      clicked: number[];
+    }>(`/emails/analytics?period=${period}`);
   },
 };
