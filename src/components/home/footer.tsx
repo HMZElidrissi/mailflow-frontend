@@ -1,17 +1,22 @@
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import Logo from '@/components/ui/logo.tsx';
+import Logo from '@/components/icons/logo.tsx';
 
 export default function Footer() {
   return (
-    <footer className="border-t border-neutral-200 dark:border-neutral-800 bg-white dark:bg-black text-gray-800 dark:text-white/80">
+    <footer className="border-t border-neutral-200 bg-white text-gray-800 dark:border-neutral-800 dark:bg-black dark:text-white/80">
       <div className="container py-16">
         <div className="mb-16 text-center">
-          <h2 className="mb-4 text-3xl font-bold text-gray-900 dark:text-white">Start sending this afternoon</h2>
+          <h2 className="mb-4 text-3xl font-bold text-gray-900 dark:text-white">
+            Start sending this afternoon
+          </h2>
           <p className="mx-auto mb-8 max-w-xl text-lg text-gray-600 dark:text-white/80">
             MailFlow delivers mission-critical emails for some of the fastest growing teams.
           </p>
-          <Button asChild className="bg-orange-600 text-white hover:bg-orange-700 dark:bg-white dark:text-black dark:hover:bg-white/90">
+          <Button
+            asChild
+            className="bg-orange-600 text-white hover:bg-orange-700 dark:bg-white dark:text-black dark:hover:bg-white/90"
+          >
             <Link to="/signup">Sign up for free</Link>
           </Button>
         </div>
@@ -32,7 +37,7 @@ export default function Footer() {
                 <li>
                   <Link
                     to="/docs/introduction"
-                    className="text-sm text-gray-500 dark:text-white/60 transition-colors hover:text-gray-800 dark:hover:text-white"
+                    className="text-sm text-gray-500 transition-colors hover:text-gray-800 dark:text-white/60 dark:hover:text-white"
                   >
                     Getting Started
                   </Link>
@@ -40,7 +45,7 @@ export default function Footer() {
                 <li>
                   <Link
                     to="/docs/api-reference/introduction"
-                    className="text-sm text-gray-500 dark:text-white/60 transition-colors hover:text-gray-800 dark:hover:text-white"
+                    className="text-sm text-gray-500 transition-colors hover:text-gray-800 dark:text-white/60 dark:hover:text-white"
                   >
                     API Reference
                   </Link>
@@ -48,7 +53,7 @@ export default function Footer() {
                 <li>
                   <Link
                     to="/docs/integrations"
-                    className="text-sm text-gray-500 dark:text-white/60 transition-colors hover:text-gray-800 dark:hover:text-white"
+                    className="text-sm text-gray-500 transition-colors hover:text-gray-800 dark:text-white/60 dark:hover:text-white"
                   >
                     Integrations
                   </Link>
@@ -62,7 +67,7 @@ export default function Footer() {
                 <li>
                   <Link
                     to="/blog"
-                    className="text-sm text-gray-500 dark:text-white/60 transition-colors hover:text-gray-800 dark:hover:text-white"
+                    className="text-sm text-gray-500 transition-colors hover:text-gray-800 dark:text-white/60 dark:hover:text-white"
                   >
                     Blog
                   </Link>
@@ -70,7 +75,7 @@ export default function Footer() {
                 <li>
                   <Link
                     to="/changelog"
-                    className="text-sm text-gray-500 dark:text-white/60 transition-colors hover:text-gray-800 dark:hover:text-white"
+                    className="text-sm text-gray-500 transition-colors hover:text-gray-800 dark:text-white/60 dark:hover:text-white"
                   >
                     Changelog
                   </Link>
@@ -78,7 +83,7 @@ export default function Footer() {
                 <li>
                   <Link
                     to="/roadmap"
-                    className="text-sm text-gray-500 dark:text-white/60 transition-colors hover:text-gray-800 dark:hover:text-white"
+                    className="text-sm text-gray-500 transition-colors hover:text-gray-800 dark:text-white/60 dark:hover:text-white"
                   >
                     Roadmap
                   </Link>
@@ -92,7 +97,7 @@ export default function Footer() {
                 <li>
                   <Link
                     to="/about"
-                    className="text-sm text-gray-500 dark:text-white/60 transition-colors hover:text-gray-800 dark:hover:text-white"
+                    className="text-sm text-gray-500 transition-colors hover:text-gray-800 dark:text-white/60 dark:hover:text-white"
                   >
                     About
                   </Link>
@@ -100,7 +105,7 @@ export default function Footer() {
                 <li>
                   <Link
                     to="/careers"
-                    className="text-sm text-gray-500 dark:text-white/60 transition-colors hover:text-gray-800 dark:hover:text-white"
+                    className="text-sm text-gray-500 transition-colors hover:text-gray-800 dark:text-white/60 dark:hover:text-white"
                   >
                     Careers
                   </Link>
@@ -108,7 +113,7 @@ export default function Footer() {
                 <li>
                   <Link
                     to="/enterprise"
-                    className="text-sm text-gray-500 dark:text-white/60 transition-colors hover:text-gray-800 dark:hover:text-white"
+                    className="text-sm text-gray-500 transition-colors hover:text-gray-800 dark:text-white/60 dark:hover:text-white"
                   >
                     Enterprise
                   </Link>
@@ -122,7 +127,7 @@ export default function Footer() {
                 <li>
                   <Link
                     to="/privacy"
-                    className="text-sm text-gray-500 dark:text-white/60 transition-colors hover:text-gray-800 dark:hover:text-white"
+                    className="text-sm text-gray-500 transition-colors hover:text-gray-800 dark:text-white/60 dark:hover:text-white"
                   >
                     Privacy
                   </Link>
@@ -130,7 +135,7 @@ export default function Footer() {
                 <li>
                   <Link
                     to="/terms"
-                    className="text-sm text-gray-500 dark:text-white/60 transition-colors hover:text-gray-800 dark:hover:text-white"
+                    className="text-sm text-gray-500 transition-colors hover:text-gray-800 dark:text-white/60 dark:hover:text-white"
                   >
                     Terms
                   </Link>
@@ -138,7 +143,7 @@ export default function Footer() {
                 <li>
                   <Link
                     to="/cookies"
-                    className="text-sm text-gray-500 dark:text-white/60 transition-colors hover:text-gray-800 dark:hover:text-white"
+                    className="text-sm text-gray-500 transition-colors hover:text-gray-800 dark:text-white/60 dark:hover:text-white"
                   >
                     Cookies
                   </Link>
@@ -148,12 +153,12 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 flex items-center justify-between border-t border-neutral-200 dark:border-neutral-800 pt-8">
+        <div className="mt-16 flex items-center justify-between border-t border-neutral-200 pt-8 dark:border-neutral-800">
           <div className="flex items-center gap-4">
             <Link
               to="https://github.com/HMZElidrissi"
               target="_blank"
-              className="text-gray-500 dark:text-white/60 hover:text-gray-800 dark:hover:text-white"
+              className="text-gray-500 hover:text-gray-800 dark:text-white/60 dark:hover:text-white"
             >
               <svg
                 width="24"
@@ -171,7 +176,7 @@ export default function Footer() {
             <Link
               to="https://x.com/HMZElidrissi"
               target="_blank"
-              className="text-gray-500 dark:text-white/60 hover:text-gray-800 dark:hover:text-white"
+              className="text-gray-500 hover:text-gray-800 dark:text-white/60 dark:hover:text-white"
             >
               <svg
                 width="24"
@@ -189,7 +194,7 @@ export default function Footer() {
           </div>
           <Link
             to="/"
-            className="flex items-center gap-2 text-sm text-gray-500 dark:text-white/60 hover:text-gray-800 dark:hover:text-white"
+            className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-800 dark:text-white/60 dark:hover:text-white"
           >
             <div className="h-2 w-2 rounded-full bg-green-500"></div>
             All systems operational

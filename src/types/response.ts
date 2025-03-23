@@ -6,3 +6,11 @@ export interface PageResponse<T> {
   totalPages: number;
   last: boolean;
 }
+
+export interface ApiError {
+  response?: {
+    data?: {
+      message?: string;
+    };
+  };
+}

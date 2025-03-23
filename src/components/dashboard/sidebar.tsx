@@ -25,7 +25,7 @@ import NavItem from '@/components/dashboard/nav-item';
 // import { RootState } from '@/store/store';
 import { logout } from '@/features/auth/authSlice';
 import { mainNavigation, secondaryNavigation } from '@/config/dashboard';
-import Logo from '@/components/ui/logo.tsx';
+import Logo from '@/components/icons/logo.tsx';
 
 export function DashboardSidebar() {
   const navigate = useNavigate();

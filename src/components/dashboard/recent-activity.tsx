@@ -1,6 +1,7 @@
-import { Email, EmailStatus } from '@/types';
+import { Email } from '@/types';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
+import { getStatusBadge } from '@/lib/utils.ts';
 
 interface RecentEmailActivityProps {
   emails: Email[];
@@ -25,24 +26,6 @@ export function RecentEmailActivity({ emails, onViewEmail }: RecentEmailActivity
     return email.substring(0, 2).toUpperCase();
   };
 
-  // Function to get status badge
-  const getStatusBadge = (status: EmailStatus) => {
-    switch (status) {
-      case EmailStatus.SENT:
-        return <Badge variant="outline">Sent</Badge>;
-      case EmailStatus.DELIVERED:
-        return <Badge variant="secondary">Delivered</Badge>;
-      case EmailStatus.OPENED:
-        return <Badge variant="default">Opened</Badge>;
-      case EmailStatus.CLICKED:
-        return <Badge className="bg-green-500">Clicked</Badge>;
-      case EmailStatus.FAILED:
-        return <Badge variant="destructive">Failed</Badge>;
-      default:
-        return <Badge variant="outline">Pending</Badge>;
-    }
-  };
-
   return (
     <div className="w-full space-y-8">
       {emails.map((email) => (
@@ -58,7 +41,9 @@ export function RecentEmailActivity({ emails, onViewEmail }: RecentEmailActivity
             <p className="line-clamp-1 text-sm font-medium leading-none">{email.subject}</p>
             <p className="text-sm text-muted-foreground">{email.recipientEmail}</p>
           </div>
-          <div className="ml-auto">{getStatusBadge(email.status)}</div>
+          <div className="ml-auto">
+            <Badge variant={getStatusBadge(email.status)}>{email.status}</Badge>
+          </div>
         </div>
       ))}
     </div>

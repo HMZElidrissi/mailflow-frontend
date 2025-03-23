@@ -12,6 +12,8 @@ import CampaignsPage from '@/pages/campaigns/campaigns-page';
 import TemplatesPage from '@/pages/templates/templates-page';
 import EmailsPage from '@/pages/emails/emails-page';
 import NotFoundPage from '@/pages/home/not-found-page';
+import RegisterPage from '@/pages/auth/register-page.tsx';
+import UnauthorizedPage from '@/pages/home/unauthorized-page.tsx';
 
 function App() {
   const { token } = useSelector((state: RootState) => state.auth);
@@ -21,6 +23,12 @@ function App() {
       <Router>
         <Routes>
           <Route path="/sign-in" element={!token ? <LoginPage /> : <Navigate to="/dashboard" />} />
+          <Route path="/sign-in" element={!token ? <LoginPage /> : <Navigate to="/dashboard" />} />
+          <Route
+            path="/sign-up"
+            element={!token ? <RegisterPage /> : <Navigate to="/dashboard" />}
+          />
+          <Route path="/unauthorized" element={<UnauthorizedPage />} />
 
           {/* Main Layout Routes */}
           <Route element={<MainLayout />}>

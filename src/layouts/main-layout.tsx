@@ -2,7 +2,7 @@ import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { logout } from '@/features/auth/authSlice';
 import { AppDispatch } from '@/store/store';
-import Logo from '@/components/ui/logo';
+import Logo from '@/components/icons/logo.tsx';
 import { LogIn, LogOut, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/theme/theme-toggle';
