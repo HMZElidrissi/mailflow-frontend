@@ -1,7 +1,7 @@
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '@/features/auth/authSlice';
-import { AppDispatch } from '@/store/store';
+import { AppDispatch, RootState } from '@/store/store';
 import Logo from '@/components/icons/logo.tsx';
 import { LogIn, LogOut, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -26,11 +26,7 @@ export default function MainLayout() {
   const navigate = useNavigate();
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  // const user = useSelector((state) => state.auth.user);
-  const user = {
-    name: 'John Doe',
-    email: 'john.doe@example.com',
-  };
+  const { user } = useSelector((state: RootState) => state.auth);
   const isAuthenticated = !!user;
 
   const handleLogout = () => {
@@ -112,7 +108,7 @@ export default function MainLayout() {
                       <Button variant="ghost" className="relative h-10 w-10">
                         <Avatar className="h-10 w-10 border border-muted">
                           <AvatarFallback className="bg-primary/10 text-primary">
-                            {user?.email?.substring(0, 2).toUpperCase() || 'U'}
+                            {(user.firstName.charAt(0) + user.lastName.charAt(0)).toUpperCase()}
                           </AvatarFallback>
                         </Avatar>
                       </Button>
@@ -120,19 +116,15 @@ export default function MainLayout() {
                     <DropdownMenuContent className="w-56" align="end" forceMount>
                       <DropdownMenuLabel>
                         <div className="flex flex-col space-y-1">
-                          <p className="text-sm font-medium leading-none">{user?.name || 'User'}</p>
+                          <p className="text-sm font-medium leading-none">
+                            {user.firstName + ' ' + user.lastName}
+                          </p>
                           <p className="text-xs leading-none text-muted-foreground">
                             {user?.email}
                           </p>
                         </div>
                       </DropdownMenuLabel>
                       <DropdownMenuSeparator />
-                      <DropdownMenuItem
-                        onClick={() => navigate('/profile')}
-                        className="cursor-pointer"
-                      >
-                        Profile
-                      </DropdownMenuItem>
                       <DropdownMenuItem
                         onClick={() => navigate('/settings')}
                         className="cursor-pointer"
@@ -180,34 +172,6 @@ export default function MainLayout() {
           </motion.div>
         </AnimatePresence>
       </main>
-
-      {/* Footer */}
-      {/*<footer className="border-t bg-card/80 py-6 backdrop-blur-sm">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col items-center justify-between md:flex-row">
-            <div className="flex items-center space-x-2">
-              <Circle className="h-5 w-5 text-orange-500" />
-              <span className="text-sm text-muted-foreground">
-                mailflow © {new Date().getFullYear()}
-              </span>
-            </div>
-            <div className="mt-4 md:mt-0">
-              <nav className="flex items-center space-x-4 text-sm text-muted-foreground">
-                <Link to="/help" className="hover:text-foreground">
-                  Help
-                </Link>
-                <Link to="/privacy" className="hover:text-foreground">
-                  Privacy
-                </Link>
-                <Link to="/terms" className="hover:text-foreground">
-                  Terms
-                </Link>
-              </nav>
-            </div>
-          </div>
-        </div>
-      </footer>
-      */}
       <Footer />
     </div>
   );

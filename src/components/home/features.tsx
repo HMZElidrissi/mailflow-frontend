@@ -35,22 +35,24 @@ const features = [
 export default function Features() {
   return (
     <motion.section variants={itemVariants} className="mb-16">
-      <h2 className="mb-12 text-center text-3xl font-bold">
-        Powerful Features, Simple Interface
-      </h2>
-      <div className="grid gap-8 md:grid-cols-3">
-        {features.map((feature, index) => (
-          <Card
-            key={index}
-            className="border border-border/50 bg-card/50 shadow-lg backdrop-blur transition-all duration-300 hover:shadow-xl"
-          >
-            <CardContent className="pt-6">
-              <div className="mb-4 flex justify-center">{feature.icon}</div>
-              <h3 className="mb-3 text-center text-xl font-semibold">{feature.title}</h3>
-              <p className="text-center text-muted-foreground">{feature.description}</p>
-            </CardContent>
-          </Card>
-        ))}
+      <div className="rounded-xl bg-gradient-to-br from-orange-500/10 to-primary/10 p-12 text-center">
+        <h2 className="mb-12 text-center text-3xl font-bold">
+          Powerful Features, Simple Interface
+        </h2>
+        <div className="grid gap-8 md:grid-cols-3">
+          {features.map((feature, index) => (
+            <Card
+              key={index}
+              className="border border-border/50 bg-card/50 shadow-lg backdrop-blur transition-all duration-300 hover:shadow-xl"
+            >
+              <CardContent className="pt-6">
+                <div className="mb-4 flex justify-center">{feature.icon}</div>
+                <h3 className="mb-3 text-center text-xl font-semibold">{feature.title}</h3>
+                <p className="text-center text-muted-foreground">{feature.description}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
       </div>
     </motion.section>
   );

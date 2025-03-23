@@ -1,13 +1,9 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { classDiagram, flowDiagram, markdownContent } from '@/config/specifications.ts';
 import Hero from '@/components/home/hero.tsx';
 import Features from '@/components/home/features.tsx';
 import HowItWorks from '@/components/home/how-it-works.tsx';
 import Benefits from '@/components/home/benefits.tsx';
-import TechnicalSpecs from '@/components/home/technical-specs.tsx';
 import Testimonials from '@/components/home/testimonials.tsx';
-import CtaSection from '@/components/home/cta.tsx';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -20,7 +16,7 @@ const containerVariants = {
 };
 
 export default function HomePage() {
-  const [activeTab, setActiveTab] = useState('overview');
+  // const [activeTab, setActiveTab] = useState('overview');
 
   return (
     <motion.div
@@ -31,17 +27,16 @@ export default function HomePage() {
     >
       <Hero />
       <Features />
-      <HowItWorks />
       <Benefits />
+      <HowItWorks />
       <Testimonials />
-      <CtaSection />
-      <TechnicalSpecs
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
-        markdownContent={markdownContent}
-        flowDiagram={flowDiagram}
-        classDiagram={classDiagram}
-      />
+      {/*<TechnicalSpecs*/}
+      {/*  activeTab={activeTab}*/}
+      {/*  setActiveTab={setActiveTab}*/}
+      {/*  markdownContent={markdownContent}*/}
+      {/*  flowDiagram={flowDiagram}*/}
+      {/*  classDiagram={classDiagram}*/}
+      {/*/>*/}
     </motion.div>
   );
 }
