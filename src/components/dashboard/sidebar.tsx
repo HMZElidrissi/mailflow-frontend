@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { ChevronDown, LogOut, Settings } from 'lucide-react';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import {
@@ -22,7 +22,7 @@ import {
   SidebarSeparator,
 } from '@/components/ui/sidebar';
 import NavItem from '@/components/dashboard/nav-item';
-// import { RootState } from '@/store/store';
+import { RootState } from '@/store/store';
 import { logout } from '@/features/auth/authSlice';
 import { mainNavigation, secondaryNavigation } from '@/config/dashboard';
 import Logo from '@/components/icons/logo.tsx';
@@ -30,11 +30,7 @@ import Logo from '@/components/icons/logo.tsx';
 export function DashboardSidebar() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // const { user } = useSelector((state: RootState) => state.auth);
-  const user = {
-    name: 'John Doe',
-    email: 'john.doe@example.com',
-  };
+  const { user } = useSelector((state: RootState) => state.auth);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleLogout = async () => {
@@ -48,18 +44,12 @@ export function DashboardSidebar() {
     }
   };
 
-  // if (!user) {
-  //   return null;
-  // }
+  if (!user) {
+    return null;
+  }
 
-  const initials = user.name
-    ? user.name
-        .split(' ')
-        .map((n) => n[0])
-        .join('')
-        .toUpperCase()
-        .slice(0, 2)
-    : user.email?.substring(0, 2).toUpperCase();
+  const userName = user.firstName + ' ' + user.lastName;
+  const initials = (user.firstName.charAt(0) + user.lastName.charAt(0)).toUpperCase();
 
   return (
     <Sidebar className="border-r border-gray-200 dark:border-gray-800">
@@ -100,9 +90,7 @@ export function DashboardSidebar() {
                     </AvatarFallback>
                   </Avatar>
                   <div className="ml-3 flex flex-col items-start">
-                    <span className="font-medium text-gray-700 dark:text-gray-300">
-                      {user.name || 'User'}
-                    </span>
+                    <span className="font-medium text-gray-700 dark:text-gray-300">{userName}</span>
                     <span className="text-xs text-gray-500 dark:text-gray-400">{user.email}</span>
                   </div>
                   <ChevronDown className="ml-auto h-4 w-4 text-gray-500" />
@@ -111,7 +99,7 @@ export function DashboardSidebar() {
               <DropdownMenuContent className="w-56" align="end" forceMount>
                 <DropdownMenuLabel className="font-normal">
                   <div className="flex flex-col space-y-1">
-                    <p className="text-sm font-medium">{user.name || 'User'}</p>
+                    <p className="text-sm font-medium">{userName}</p>
                     <p className="text-xs text-gray-500 dark:text-gray-400">{user.email}</p>
                   </div>
                 </DropdownMenuLabel>

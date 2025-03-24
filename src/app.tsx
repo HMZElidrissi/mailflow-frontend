@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/store/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '@/store/store';
 import { ThemeProvider } from '@/components/theme/theme-provider';
 import MainLayout from '@/layouts/main-layout';
 import DashboardLayout from '@/layouts/dashboard-layout';
@@ -12,17 +12,26 @@ import CampaignsPage from '@/pages/campaigns/campaigns-page';
 import TemplatesPage from '@/pages/templates/templates-page';
 import EmailsPage from '@/pages/emails/emails-page';
 import NotFoundPage from '@/pages/home/not-found-page';
-import RegisterPage from '@/pages/auth/register-page.tsx';
-import UnauthorizedPage from '@/pages/home/unauthorized-page.tsx';
+import RegisterPage from '@/pages/auth/register-page';
+import UnauthorizedPage from '@/pages/home/unauthorized-page';
+import { useEffect } from 'react';
+import { fetchCurrentUser } from '@/features/auth/authSlice';
+import AuthGuard from '@/guards/auth-guard';
 
 function App() {
   const { token } = useSelector((state: RootState) => state.auth);
+  const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    if (token) {
+      dispatch(fetchCurrentUser());
+    }
+  }, [token, dispatch]);
 
   return (
     <ThemeProvider defaultTheme="dark" attribute="class">
       <Router>
         <Routes>
-          <Route path="/sign-in" element={!token ? <LoginPage /> : <Navigate to="/dashboard" />} />
           <Route path="/sign-in" element={!token ? <LoginPage /> : <Navigate to="/dashboard" />} />
           <Route
             path="/sign-up"
@@ -36,7 +45,14 @@ function App() {
           </Route>
 
           {/* Dashboard Layout Routes */}
-          <Route path="/dashboard" element={<DashboardLayout />}>
+          <Route
+            path="/dashboard"
+            element={
+              <AuthGuard>
+                <DashboardLayout />
+              </AuthGuard>
+            }
+          >
             <Route index element={<DashboardPage />} />
             <Route path="contacts" element={<ContactsPage />} />
             <Route path="campaigns" element={<CampaignsPage />} />

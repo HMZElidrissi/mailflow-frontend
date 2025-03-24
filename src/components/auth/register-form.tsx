@@ -67,7 +67,7 @@ export default function RegisterForm() {
       setSuccess(true);
 
       setTimeout(() => {
-        navigate('/login');
+        navigate('/sign-in');
       }, 2000);
     } catch (err: unknown) {
       console.error('Registration error:', err);
