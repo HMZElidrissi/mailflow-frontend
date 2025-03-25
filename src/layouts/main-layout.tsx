@@ -126,7 +126,7 @@ export default function MainLayout() {
                       </DropdownMenuLabel>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem
-                        onClick={() => navigate('/settings')}
+                        onClick={() => navigate('/dashboard/settings')}
                         className="cursor-pointer"
                       >
                         Settings

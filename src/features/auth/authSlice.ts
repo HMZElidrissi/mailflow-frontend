@@ -95,10 +95,11 @@ export const fetchCurrentUser = createAsyncThunk(
 export const logout = createAsyncThunk('auth/logout', async (_, { getState }) => {
   const state = getState() as { auth: AuthState };
   const refreshToken = state.auth.refreshToken;
+  const userId = state.auth.user?.id;
 
   if (refreshToken) {
     try {
-      await api.post('/auth/logout', { refreshToken });
+      await api.post(`/auth/logout`, { userId, refreshToken });
     } catch (error) {
       console.error('Server logout failed', error);
     }
