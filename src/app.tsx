@@ -17,6 +17,7 @@ import UnauthorizedPage from '@/pages/home/unauthorized-page';
 import { useEffect } from 'react';
 import { fetchCurrentUser } from '@/features/auth/authSlice';
 import AuthGuard from '@/guards/auth-guard';
+import ProfilePage from '@/pages/dashboard/profile-page.tsx';
 
 function App() {
   const { token } = useSelector((state: RootState) => state.auth);
@@ -58,6 +59,7 @@ function App() {
             <Route path="campaigns" element={<CampaignsPage />} />
             <Route path="templates" element={<TemplatesPage />} />
             <Route path="emails" element={<EmailsPage />} />
+            <Route path="settings" element={<ProfilePage />} />
             <Route path="*" element={<Navigate to="/dashboard" />} />
           </Route>
 
