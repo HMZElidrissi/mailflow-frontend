@@ -20,7 +20,7 @@ export default function Footer() {
             asChild
             className="bg-orange-600 text-white hover:bg-orange-700 dark:bg-white dark:text-black dark:hover:bg-white/90"
           >
-            <Link to="/signup">Sign up for free</Link>
+            <Link to="/sign-up">Sign up for free</Link>
           </Button>
         </div>
 

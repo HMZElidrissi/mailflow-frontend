@@ -25,7 +25,7 @@ export default function CtaSection() {
           campaigns that convert.
         </p>
         <Button size="lg" className="bg-orange-500 hover:bg-orange-600">
-          <Link to="/signup" className="flex items-center gap-2">
+          <Link to="/sign-up" className="flex items-center gap-2">
             Get Started for Free
             <ArrowRight className="h-4 w-4" />
           </Link>
